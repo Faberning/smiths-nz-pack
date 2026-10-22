@@ -1,0 +1,17 @@
+SMITH'S NZ SYSTEMS PACK - HOW TO PRESENT
+Prepared by Eko Media, October 2026
+
+1. Keep all the files together in this folder. If you send it to someone as a zip, they need to "Extract All" first.
+2. Open index.html in Chrome or Edge. This is the presentation. Use the arrow keys or the dots on the right to move between slides.
+3. The buttons in the top bar open the live demos:
+   - Installer portal (portal.html): stock and lead times, the site calculator, a quote with a back-ordered item, training and leads.
+   - Network map (map.html): approved installers, demand by town and the 5 coverage gaps. Switch to "Homeowner view" to search for a town.
+   - Leadership dashboard (dashboard.html): what Smith's would see each week.
+   Each demo has a "Back to presentation" button that takes you back to the slide you came from.
+4. The film is in the video folder:
+   - smiths-promo-169.mp4 for the boardroom screen
+   - smiths-promo-916.mp4 for phones
+   The last slide links to both.
+5. Everything works offline. No internet is needed.
+
+All installers, stock levels, demand and dashboard figures are SAMPLE data for discussion and are labelled that way. There is no pricing in the pack.

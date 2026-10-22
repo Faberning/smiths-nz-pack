@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en-NZ">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smith's solar leadership dashboard (mock-up)</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+:root{--y:#FFDD00;--k:#0b0b0b;--k2:#151515;--k3:#1f1f1f;--ink:#eee;--mute:#9a9a9a;--line:#2a2a2a;--ok:#51cf66;--warn:#ff922b;--bad:#ff6b6b;--s2:#bdbdbd;--s3:#6e6e6e}
+*{box-sizing:border-box}
+body{margin:0;font:14.5px/1.45 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--k)}
+a{color:inherit}
+.mock{background:#fff3bf;color:#5c4500;font-size:13px;padding:8px 16px}
+header{display:flex;align-items:center;gap:16px;padding:14px 24px;border-bottom:1px solid var(--line)}
+header img{height:36px;display:block}
+header h1{font-size:18px;margin:0}
+header h1 small{display:block;font-weight:400;color:var(--mute);font-size:12.5px}
+header .per{margin-left:auto;display:flex;gap:6px}
+header .per button{background:var(--k3);color:#ccc;border:1px solid var(--line);border-radius:999px;padding:7px 12px;font:600 13px system-ui;cursor:pointer}
+header .per button.on{background:var(--y);color:var(--k);border-color:var(--y)}
+main{padding:20px 24px 90px;max-width:1300px;margin:0 auto}
+.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.kpi{background:var(--k2);border:1px solid var(--line);border-radius:14px;padding:14px}
+.kpi .l{font:11px ui-monospace,Menlo,monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.kpi .v{font-size:30px;font-weight:800;line-height:1.1;margin:6px 0 2px}
+.kpi .d{font-size:12.5px;color:var(--mute)}
+.up{color:var(--ok)}.dn{color:var(--bad)}
+.grid{display:grid;grid-template-columns:1.6fr 1fr;gap:14px;margin-top:14px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.panel{background:var(--k2);border:1px solid var(--line);border-radius:14px;padding:16px;overflow-x:auto;min-width:0}
+.panel h2{font-size:15px;margin:0 0 2px}
+.panel .h{color:var(--mute);font-size:12.5px;margin:0 0 12px}
+.legend{display:flex;gap:14px;font-size:12.5px;color:#ccc;margin-bottom:6px}
+.legend i{display:inline-block;width:12px;height:3px;border-radius:2px;margin-right:6px;vertical-align:middle}
+svg text{fill:#9a9a9a;font:11px system-ui,sans-serif}
+table{width:100%;border-collapse:collapse}
+th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line);font-size:13.5px}
+th{font:10.5px ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);font-weight:400}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+.flag{display:inline-block;border-radius:999px;padding:2px 9px;font-size:12px;font-weight:700}
+.flag.bad{background:rgba(255,107,107,.15);color:var(--bad)}.flag.warn{background:rgba(255,146,43,.15);color:var(--warn)}.flag.ok{background:rgba(81,207,102,.12);color:var(--ok)}
+.bars .r{display:grid;grid-template-columns:130px 1fr 44px;gap:10px;align-items:center;margin:7px 0;font-size:13px}
+.bars .t{height:14px;background:var(--k3);border-radius:4px;overflow:hidden}
+.bars .f{height:100%;background:var(--y);border-radius:4px}
+.bars .f.g{background:#e03131}
+.bars .n{text-align:right;font-variant-numeric:tabular-nums;color:#ccc}
+.qs li{margin:0 0 8px;display:flex;justify-content:space-between;gap:10px;font-size:13.5px}
+.qs{list-style:none;padding:0;margin:0}
+.qs b{color:var(--y);font-variant-numeric:tabular-nums}
+.funnel{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:4px}
+.funnel div{background:var(--k3);border-radius:10px;padding:12px;text-align:center}
+.funnel b{display:block;font-size:24px}
+.funnel span{font-size:12px;color:var(--mute)}
+.funnel .c{font-size:12px;color:var(--y);margin-top:4px}
+.btn{display:inline-block;background:var(--y);color:var(--k);font-weight:700;border-radius:999px;padding:9px 14px;text-decoration:none;font-size:13.5px}
+.src{font-size:12px;color:#777;margin-top:14px}
+#eko-back{position:fixed;left:16px;bottom:16px;z-index:999;background:var(--y);color:var(--k);font:800 15px system-ui,sans-serif;padding:12px 18px;border-radius:999px;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.5);border:2px solid #fff}
+@media (max-width:1000px){.kpis{grid-template-columns:repeat(3,1fr)}.grid,.grid2{grid-template-columns:1fr}}
+@media (max-width:600px){.kpis{grid-template-columns:repeat(2,1fr)}header h1 small{display:none}header{padding:12px 16px}main{padding:16px}.funnel{grid-template-columns:repeat(2,1fr)}header .per{display:none}}
+</style>
+</head>
+<body>
+<div class="mock"><b>Mock-up by Eko Media for discussion.</b> Every figure on this page is sample data that shows what the dashboard would track.</div>
+<header>
+  <img src="img/smiths-logo.png" alt="Smiths" width="70" height="36">
+  <h1>Solar leadership dashboard<small>Installer network · stock · pipeline · coverage</small></h1>
+  <div class="per" id="per"><button data-w="1" class="on">This week</button><button data-w="4">Last 4 weeks</button></div>
+</header>
+<main>
+  <section class="kpis" id="kpis"></section>
+
+  <section class="grid">
+    <div class="panel">
+      <h2>Demand before it's an order</h2>
+      <p class="h">Weekly installer lookups, quotes created and orders placed. Lookups and quotes run ahead of orders, which shows what's coming.</p>
+      <div class="legend"><span><i style="background:var(--y)"></i>Portal lookups</span><span><i style="background:var(--s2)"></i>Quotes created</span><span><i style="background:var(--s3)"></i>Orders</span></div>
+      <svg id="trend" viewBox="0 0 720 240" width="100%" role="img" aria-label="Line chart of weekly lookups, quotes and orders over 12 weeks"></svg>
+    </div>
+    <div class="panel">
+      <h2>Pipeline this week</h2>
+      <p class="h">From homeowner lead to Smith's order.</p>
+      <div class="funnel" id="funnel"></div>
+      <h2 style="margin-top:18px">What installers asked the portal</h2>
+      <p class="h">Top site-calculator and stock queries.</p>
+      <ul class="qs" id="qs"></ul>
+    </div>
+  </section>
+
+  <section class="grid2">
+    <div class="panel">
+      <h2>Stock cover against quoted demand</h2>
+      <p class="h">On hand and inbound against open quotes for the next 30 days.</p>
+      <table><thead><tr><th>Product</th><th class="n">On hand</th><th class="n">Inbound</th><th class="n">Quoted (30 d)</th><th class="n">Cover</th><th></th></tr></thead><tbody id="stock"></tbody></table>
+    </div>
+    <div class="panel">
+      <h2>Demand by region</h2>
+      <p class="h">Lookups and homeowner leads, last 30 days. Red bars are regions with gaps in installer coverage.</p>
+      <div class="bars" id="regions"></div>
+      <div style="margin-top:12px"><a class="btn" href="map.html?from=s8" id="mapLink">See gaps on the network map →</a></div>
+    </div>
+  </section>
+
+  <section class="panel" style="margin-top:14px">
+    <h2>Installer activity</h2>
+    <p class="h">Who is quoting, who is converting and who might need support.</p>
+    <table><thead><tr><th>Installer</th><th>Area</th><th class="n">Leads</th><th class="n">Quotes</th><th class="n">Orders</th><th class="n">Conversion</th><th class="n">Training</th></tr></thead><tbody id="inst"></tbody></table>
+  </section>
+  <p class="src">Sources once live: installer portal logs, homeowner calculator, the online store and Smith's stock system. All figures here are samples.</p>
+</main>
+<a id="eko-back" href="index.html">← Back to presentation</a>
+<script>
+const $=id=>document.getElementById(id);
+const fmt=n=>n.toLocaleString("en-NZ");
+const WEEKS=["7 Aug","14 Aug","21 Aug","28 Aug","4 Sep","11 Sep","18 Sep","25 Sep","2 Oct","9 Oct","16 Oct","23 Oct"];
+const LOOK=[640,690,720,705,810,860,905,980,1040,1110,1190,1284];
+const QUOTE=[118,121,126,124,139,146,151,163,171,184,198,212];
+const ORDER=[52,55,54,57,58,61,63,66,69,72,76,81];
+const K={
+ 1:[["Installer lookups",1284,"+7.9% vs last week",1],["Quotes created",212,"+7.1%",1],["Homeowner leads",96,"+12 vs last week",1],["Quote → order",38,"% this week",0],["SKUs below cover",3,"SH20T, SH25T, SBH",-1],["Coverage gaps",0,"towns, from the map",-1]],
+ 4:[["Installer lookups",4624,"+22% vs prior 4 wks",1],["Quotes created",765,"+19%",1],["Homeowner leads",341,"+64 vs prior 4 wks",1],["Quote → order",39,"% average",0],["SKUs below cover",3,"SH20T, SH25T, SBH",-1],["Coverage gaps",0,"towns, from the map",-1]]
+};
+const GAPS=5; // matches the gaps computed on map.html
+function kpis(w){$("kpis").innerHTML=K[w].map(([l,v,d,s])=>{if(l==="Coverage gaps")v=GAPS;return `<div class="kpi"><div class="l">${l}</div><div class="v"${s<0?' style="color:var(--warn)"':''}>${l==="Quote → order"?v+"%":fmt(v)}</div><div class="d ${s>0?"up":""}">${d}</div></div>`}).join("");}
+kpis(1);
+$("per").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;[...$("per").children].forEach(x=>x.classList.toggle("on",x===b));kpis(+b.dataset.w);});
+
+/* trend */
+(function(){
+  const W=720,H=240,L=40,R=12,T=12,B=26,max=1400,x=i=>L+i*(W-L-R)/(WEEKS.length-1),y=v=>T+(H-T-B)*(1-v/max);
+  let s="";
+  [0,350,700,1050,1400].forEach(v=>{s+=`<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="#2a2a2a"/><text x="${L-6}" y="${y(v)+4}" text-anchor="end">${fmt(v)}</text>`;});
+  WEEKS.forEach((w,i)=>{if(i%2===1||i===WEEKS.length-1)s+=`<text x="${x(i)}" y="${H-6}" text-anchor="middle">${w}</text>`;});
+  const line=(d,c,wd)=>`<polyline fill="none" stroke="${c}" stroke-width="${wd}" stroke-linejoin="round" stroke-linecap="round" points="${d.map((v,i)=>x(i)+","+y(v)).join(" ")}"/>`;
+  s+=line(ORDER,"#6e6e6e",2)+line(QUOTE,"#bdbdbd",2)+line(LOOK,"#FFDD00",3);
+  const li=WEEKS.length-1;
+  s+=`<circle cx="${x(li)}" cy="${y(LOOK[li])}" r="4.5" fill="#FFDD00"/><text x="${x(li)-8}" y="${y(LOOK[li])-10}" text-anchor="end" style="fill:#FFDD00;font-weight:700">${fmt(LOOK[li])}</text>`;
+  s+=`<text x="${x(li)-8}" y="${y(QUOTE[li])-8}" text-anchor="end" style="fill:#ddd">${QUOTE[li]}</text><text x="${x(li)-8}" y="${y(ORDER[li])+16}" text-anchor="end" style="fill:#aaa">${ORDER[li]}</text>`;
+  $("trend").innerHTML=s;
+})();
+
+/* funnel */
+$("funnel").innerHTML=[["Homeowner leads",96,""],["Site checks",318,""],["Quotes",212,""],["Orders",81,"38% of quotes"]].map(([l,v,c])=>`<div><b>${v}</b><span>${l}</span>${c?`<div class="c">${c}</div>`:""}</div>`).join("");
+$("qs").innerHTML=[["Is the SH25T in stock?",142],["Battery sizing for a hybrid install",118],["Coastal fixings, corrosion zone D",76],["Lead time on SBH batteries",64],["Three-phase supply check",51]].map(([q,n])=>`<li><span>${q}</span><b>${n}</b></li>`).join("");
+
+/* stock */
+const ST=[["SH15T hybrid inverter",24,40,22],["SH20T hybrid inverter",6,30,31],["SH25T hybrid inverter",0,20,18],["SBH battery (150–400)",31,25,58],["AC22E-01 EV charger",18,0,9],["Clenergy RUNNUR racking",140,0,64]];
+$("stock").innerHTML=ST.map(([p,o,i,q])=>{const c=(o+i)/q,cov=(o/q*30).toFixed(0);const f=o===0?'<span class="flag bad">Reorder</span>':o<q?'<span class="flag warn">Below cover</span>':'<span class="flag ok">OK</span>';return `<tr><td>${p}</td><td class="n">${o}</td><td class="n">${i||"—"}</td><td class="n">${q}</td><td class="n">${cov} d</td><td>${f}</td></tr>`;}).join("");
+
+/* regions */
+const RG=[["Auckland",565,0],["Waikato",205,0],["Bay of Plenty",293,0],["Hawke's Bay",149,1],["Wellington",190,0],["Canterbury",234,0],["Northland",102,1],["Gisborne",33,1],["Otago",101,0],["Marlborough",45,0]].sort((a,b)=>b[1]-a[1]);
+const mx=Math.max(...RG.map(r=>r[1]));
+$("regions").innerHTML=RG.map(([r,v,g])=>`<div class="r"><span>${r}</span><div class="t"><div class="f${g?" g":""}" style="width:${v/mx*100}%"></div></div><span class="n">${v}</span></div>`).join("");
+
+/* installers */
+const IN=[["Sample Installer A","North Shore",14,22,9],["Sample Installer F","Tauranga",11,19,8],["Sample Installer L","Christchurch",9,17,7],["Sample Installer D","Hamilton",8,15,6],["Sample Installer J","Lower Hutt",6,12,3],["Sample Installer H","New Plymouth",4,9,2],["Sample Installer K","Nelson",5,4,1]];
+const TR=["6/6","5/6","6/6","4/6","3/6","4/6","2/6"];
+$("inst").innerHTML=IN.map(([n,a,l,q,o],i)=>{const c=Math.round(o/q*100);return `<tr><td>${n}</td><td>${a}</td><td class="n">${l}</td><td class="n">${q}</td><td class="n">${o}</td><td class="n"${c<30?' style="color:var(--warn)"':''}>${c}%</td><td class="n">${TR[i]}</td></tr>`;}).join("");
+
+(function(){var b=$("eko-back"),q=new URLSearchParams(location.search),from=q.get("from"),emb=false;try{emb=window.self!==window.top;}catch(e){emb=true;}
+  if(emb){b.style.display="none";return;}b.href="index.html"+(from?"#"+from:"");
+  if(from)$("mapLink").href="map.html?from="+from;})();
+</script>
+</body>
+</html>

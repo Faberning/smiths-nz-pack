@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en-NZ">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smith's Installer Portal (mock-up)</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+:root{--y:#FFDD00;--k:#0b0b0b;--k2:#1a1a1a;--ink:#141414;--mute:#666;--paper:#f4f4f0;--line:#e2e2dc;--ok:#1f9d55;--warn:#d9480f;--low:#b07d00;--bad:#c92a2a}
+*{box-sizing:border-box}
+body{margin:0;font:15px/1.5 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--paper)}
+a{color:inherit}
+.mock{background:#fff3bf;color:#5c4500;font-size:13px;padding:8px 16px;border-bottom:1px solid #f0d36b}
+header{background:var(--k);color:#fff;display:flex;align-items:center;gap:16px;padding:10px 20px}
+header img{height:34px;width:auto;display:block}
+header .t{font-weight:700;letter-spacing:.02em}
+header .t small{display:block;font-weight:400;color:#aaa;font-size:12px}
+header .who{margin-left:auto;display:flex;align-items:center;gap:10px;font-size:13px;color:#ccc}
+header .av{width:32px;height:32px;border-radius:50%;background:var(--y);color:var(--k);display:grid;place-items:center;font-weight:800}
+.app{display:grid;grid-template-columns:230px 1fr;min-height:calc(100vh - 92px)}
+nav.side{background:#fff;border-right:1px solid var(--line);padding:14px 10px}
+nav.side button{display:flex;width:100%;align-items:center;gap:10px;background:none;border:0;text-align:left;padding:10px 12px;border-radius:10px;font:600 14px system-ui,sans-serif;color:#333;cursor:pointer}
+nav.side button:hover{background:#f3f3ee}
+nav.side button.on{background:var(--k);color:var(--y)}
+nav.side .ic{width:22px;text-align:center}
+nav.side .badge{margin-left:auto;background:var(--y);color:var(--k);border-radius:999px;font-size:11px;padding:1px 7px}
+main{padding:24px 28px;max-width:1150px}
+h1{font-size:26px;margin:0 0 4px;letter-spacing:-.01em}
+.sub{color:var(--mute);margin:0 0 20px}
+.panel{display:none}.panel.on{display:block}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}
+.k{font:11px ui-monospace,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase;color:#888}
+.big{font-size:30px;font-weight:800;line-height:1.1;margin-top:6px}
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);font-size:14px;vertical-align:middle}
+th{background:#fafaf6;font:11px ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:#777}
+tr:last-child td{border-bottom:0}
+td img{width:44px;height:44px;object-fit:contain;border-radius:8px;background:#f1f3f6;display:block}
+.pill{display:inline-block;border-radius:999px;padding:3px 10px;font-size:12.5px;font-weight:700}
+.pill.ok{background:#e6f6ec;color:var(--ok)}.pill.low{background:#fff4d6;color:var(--low)}.pill.out{background:#fdecea;color:var(--bad)}
+.btn{display:inline-flex;align-items:center;gap:6px;background:var(--y);color:var(--k);border:0;border-radius:999px;padding:10px 16px;font:700 14px system-ui,sans-serif;cursor:pointer;text-decoration:none}
+.btn.dark{background:var(--k);color:var(--y)}
+.btn.ghost{background:#fff;border:1px solid var(--line)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+input[type=text],select{font:15px system-ui,sans-serif;padding:11px 12px;border:1px solid #cfcfc8;border-radius:10px;background:#fff;min-width:0}
+.res{margin-top:16px;display:none}.res.on{display:block}
+.zone{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0}
+.zone div{background:#fafaf6;border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.zone b{display:block;font-size:17px}
+.zone span{font-size:12px;color:#777}
+.alert{border-radius:12px;padding:12px 14px;font-size:14px;margin:10px 0;display:flex;gap:10px;align-items:flex-start}
+.alert.warn{background:#fff4e6;border:1px solid #ffc078;color:#7a3100}
+.alert.ok{background:#ebfbee;border:1px solid #8ce99a;color:#0b5c25}
+.alert.info{background:#f1f3f5;border:1px solid #dee2e6;color:#333}
+.alert b{display:block}
+.vids{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.vid{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.vid .th{aspect-ratio:16/9;background:#0b0b0b center/cover;position:relative;display:grid;place-items:center}
+.vid .th::after{content:"▶";width:52px;height:52px;border-radius:50%;background:var(--y);color:var(--k);display:grid;place-items:center;font-size:20px;padding-left:4px}
+.vid .b{padding:12px 14px}
+.vid h3{font-size:15px;margin:0 0 4px}
+.vid p{margin:0;font-size:13px;color:var(--mute)}
+.note{list-style:none;margin:0;padding:0}
+.note li{display:flex;gap:12px;padding:12px 14px;background:#fff;border:1px solid var(--line);border-radius:12px;margin-bottom:8px}
+.note .dot{flex:none;width:10px;height:10px;border-radius:50%;margin-top:6px}
+.note b{display:block}
+.note small{color:#888}
+.qtotal{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+.src{font-size:12px;color:#888;margin-top:16px}
+#eko-back{position:fixed;left:16px;bottom:16px;z-index:999;background:var(--y);color:var(--k);font:800 15px system-ui,sans-serif;padding:12px 18px;border-radius:999px;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.3);border:2px solid var(--k)}
+@media (max-width:860px){.app{grid-template-columns:1fr}nav.side{display:flex;overflow-x:auto;gap:4px;border-right:0;border-bottom:1px solid var(--line)}nav.side button{white-space:nowrap;width:auto}.grid4,.grid3,.grid2,.vids,.zone{grid-template-columns:1fr 1fr}main{padding:18px 16px}table{display:block;overflow-x:auto}}
+</style>
+</head>
+<body>
+<div class="mock"><b>Mock-up by Eko Media for discussion.</b> Installer, stock, lead-time and site data are samples. Products are from Smith's solar range.</div>
+<header>
+  <img src="img/smiths-logo.png" alt="Smiths" width="66" height="34">
+  <div class="t">Installer Portal<small>Approved solar installers</small></div>
+  <div class="who"><span>Sample Installer A · North Shore</span><span class="av">A</span></div>
+</header>
+<div class="app">
+  <nav class="side" id="nav">
+    <button class="on" data-p="home"><span class="ic">◧</span>Overview</button>
+    <button data-p="site"><span class="ic">⌂</span>Site calculator</button>
+    <button data-p="stock"><span class="ic">▦</span>Stock &amp; lead times</button>
+    <button data-p="quote"><span class="ic">$</span>Quote builder<span class="badge">1</span></button>
+    <button data-p="train"><span class="ic">▶</span>Training</button>
+    <button data-p="leads"><span class="ic">★</span>Homeowner leads<span class="badge">3</span></button>
+    <button data-p="news"><span class="ic">!</span>Notifications<span class="badge">4</span></button>
+  </nav>
+  <main>
+    <!-- overview -->
+    <section class="panel on" id="p-home">
+      <h1>Kia ora, Sample Installer A</h1>
+      <p class="sub">Here's your week. Stock and lead times are live from Smith's Hamilton warehouse.</p>
+      <div class="grid4">
+        <div class="card"><div class="k">Open quotes</div><div class="big">7</div></div>
+        <div class="card"><div class="k">New homeowner leads</div><div class="big">3</div></div>
+        <div class="card"><div class="k">Orders in transit</div><div class="big">2</div></div>
+        <div class="card"><div class="k">Training complete</div><div class="big">4 / 6</div></div>
+      </div>
+      <div class="alert warn" style="margin-top:16px"><span>⚠</span><div><b>Quote Q-1042 needs attention</b>The SH25T on this quote is back-ordered. A swap to an in-stock option is suggested. <a href="#" data-go="quote">Open quote</a></div></div>
+      <div class="grid3" style="margin-top:6px">
+        <div class="card"><div class="k">Start a job</div><p style="margin:8px 0 12px">Size a compliant system for a site address.</p><button class="btn" data-go="site">Site calculator</button></div>
+        <div class="card"><div class="k">Check stock</div><p style="margin:8px 0 12px">See on-hand, inbound and ETAs.</p><button class="btn ghost" data-go="stock">Stock &amp; lead times</button></div>
+        <div class="card"><div class="k">Learn</div><p style="margin:8px 0 12px">Install videos for every product you quote.</p><button class="btn ghost" data-go="train">Training</button></div>
+      </div>
+    </section>
+
+    <!-- site -->
+    <section class="panel" id="p-site">
+      <h1>Site calculator</h1>
+      <p class="sub">Enter the site address. We look up the wind zone, coastal exposure, flood overlays and council notes, then list only compliant, in-stock products.</p>
+      <div class="row">
+        <select id="addr" aria-label="Sample site address">
+          <option value="mt">14 Sample Street, Mount Maunganui</option>
+          <option value="cam">88 Sample Road, Cambridge</option>
+          <option value="wgn">3 Sample Terrace, Wellington</option>
+        </select>
+        <select id="phase" aria-label="Supply"><option value="3">Three-phase supply</option><option value="1">Single-phase supply</option></select>
+        <select id="bill" aria-label="Monthly power bill"><option value="250">Bill ~$250/month</option><option value="400" selected>Bill ~$400/month</option><option value="600">Bill ~$600/month</option></select>
+        <button class="btn" id="run">Check site</button>
+      </div>
+      <div class="res" id="res"></div>
+      <p class="src">In the live build, zones come from council GIS layers and the NZS 3604 wind and corrosion zone maps. These results are samples.</p>
+    </section>
+
+    <!-- stock -->
+    <section class="panel" id="p-stock">
+      <h1>Stock &amp; lead times</h1>
+      <p class="sub">Live from Smith's Hamilton warehouse, with overnight delivery nationwide. <span class="pill low" style="font-weight:600">Sample data</span></p>
+      <table>
+        <thead><tr><th></th><th>Product</th><th>On hand</th><th>Inbound</th><th>Status</th><th>If unavailable</th></tr></thead>
+        <tbody id="stockRows"></tbody>
+      </table>
+    </section>
+
+    <!-- quote -->
+    <section class="panel" id="p-quote">
+      <h1>Quote Q-1042 · 14 Sample Street, Mount Maunganui</h1>
+      <p class="sub">The quote checks every line against live stock before you send it. Pricing comes from your Smith's trade price list.</p>
+      <div id="qAlert"></div>
+      <table>
+        <thead><tr><th></th><th>Line</th><th>Qty</th><th>Stock</th><th></th></tr></thead>
+        <tbody id="qRows"></tbody>
+      </table>
+      <div class="qtotal"><span class="src" style="margin:0">Trade prices hidden in this demo.</span><button class="btn dark" id="send">Send quote to homeowner</button></div>
+      <div id="qSent"></div>
+    </section>
+
+    <!-- training -->
+    <section class="panel" id="p-train">
+      <h1>Training</h1>
+      <p class="sub">Install and commissioning videos for every product in the range. Each one also opens from the matching quote line.</p>
+      <div class="vids">
+        <div class="vid"><div class="th" style="background-image:url(img/runnur.jpg)"></div><div class="b"><h3>Installing Clenergy RUNNUR rail</h3><p>Video slot · awaiting manufacturer file</p></div></div>
+        <div class="vid"><div class="th" style="background-image:url(img/au-sh-hybrid.jpg);background-color:#e9edf3;background-size:contain;background-repeat:no-repeat"></div><div class="b"><h3>Commissioning the SH15/20/25T</h3><p>Video slot · awaiting manufacturer file</p></div></div>
+        <div class="vid"><div class="th" style="background-image:url(img/au-sbh-battery.jpg);background-color:#e9edf3;background-size:contain;background-repeat:no-repeat"></div><div class="b"><h3>Stacking the SBH battery</h3><p>Video slot · awaiting manufacturer file</p></div></div>
+        <div class="vid"><div class="th" style="background-image:url(img/au-ac-charger.jpg);background-color:#e9edf3;background-size:contain;background-repeat:no-repeat"></div><div class="b"><h3>AC22E-01 charger setup</h3><p>Video slot · awaiting manufacturer file</p></div></div>
+        <div class="vid"><div class="th" style="background-image:url(img/home-system.jpg)"></div><div class="b"><h3>Hybrid + battery + charger: full system</h3><p>Video slot · awaiting Smith's file</p></div></div>
+        <div class="vid"><div class="th" style="background-image:url(img/solar-rows.jpg)"></div><div class="b"><h3>Coastal sites: fixings and corrosion zones</h3><p>Video slot · awaiting Smith's file</p></div></div>
+      </div>
+    </section>
+
+    <!-- leads -->
+    <section class="panel" id="p-leads">
+      <h1>Homeowner leads</h1>
+      <p class="sub">Leads from the public calculator, sent to you because you're the nearest approved installer.</p>
+      <table>
+        <thead><tr><th>Received</th><th>Suburb</th><th>Bill</th><th>Suggested system</th><th></th></tr></thead>
+        <tbody>
+          <tr><td>Today 9:12</td><td>Takapuna</td><td>~$420/mo</td><td>Hybrid inverter + battery</td><td><button class="btn" data-go="site">Start quote</button></td></tr>
+          <tr><td>Yesterday</td><td>Albany</td><td>~$310/mo</td><td>Hybrid inverter</td><td><button class="btn ghost" data-go="site">Start quote</button></td></tr>
+          <tr><td>Mon</td><td>Devonport</td><td>~$560/mo</td><td>Hybrid + battery + EV charger</td><td><button class="btn ghost" data-go="site">Start quote</button></td></tr>
+        </tbody>
+      </table>
+      <p class="src">Sample leads.</p>
+    </section>
+
+    <!-- news -->
+    <section class="panel" id="p-news">
+      <h1>Notifications</h1>
+      <p class="sub">Only what affects the products you quote and install.</p>
+      <ul class="note">
+        <li><span class="dot" style="background:var(--ok)"></span><div><b>SH25T stock lands 26 Nov</b>20 units inbound. Quote Q-1042 can switch back if the homeowner can wait.<br><small>Stock · today</small></div></li>
+        <li><span class="dot" style="background:var(--low)"></span><div><b>SH20T running low</b>6 left in Hamilton. 30 more inbound on 12 Nov.<br><small>Stock · today</small></div></li>
+        <li><span class="dot" style="background:#228be6"></span><div><b>New training video: coastal fixings</b>Recommended for sites in corrosion zone D.<br><small>Training · yesterday</small></div></li>
+        <li><span class="dot" style="background:#868e96"></span><div><b>Trade price list updated</b>New prices apply to quotes created from 1 Nov.<br><small>Pricing · Mon</small></div></li>
+      </ul>
+      <p class="src">Sample notifications.</p>
+    </section>
+  </main>
+</div>
+
+<a id="eko-back" href="index.html">← Back to presentation</a>
+<script>
+const P = [
+ {id:"sh15",img:"img/au-sh-hybrid.jpg",n:"Sungrow SH15T hybrid inverter",d:"15 kW · three-phase",on:24,inb:"40 · 12 Nov",alt:"—"},
+ {id:"sh20",img:"img/au-sh-hybrid.jpg",n:"Sungrow SH20T hybrid inverter",d:"20 kW · three-phase",on:6,inb:"30 · 12 Nov",alt:"SH15T (24 in stock)"},
+ {id:"sh25",img:"img/au-sh-hybrid.jpg",n:"Sungrow SH25T hybrid inverter",d:"25 kW · three-phase",on:0,inb:"20 · 26 Nov",alt:"SH20T (6 in stock)"},
+ {id:"sbh",img:"img/au-sbh-battery.jpg",n:"Sungrow SBH battery (SBH150–400)",d:"High-voltage battery",on:31,inb:"25 · 19 Nov",alt:"—"},
+ {id:"ac22",img:"img/au-ac-charger.jpg",n:"Sungrow AC22E-01 EV charger",d:"AC charger",on:18,inb:"—",alt:"—"},
+ {id:"rail",img:"img/runnur.jpg",n:"Clenergy RUNNUR racking",d:"Rail and clamps",on:140,inb:"—",alt:"—"}
+];
+const status=x=>x.on===0?'<span class="pill out">Back-ordered</span>':x.on<10?'<span class="pill low">Low</span>':'<span class="pill ok">In stock</span>';
+document.getElementById("stockRows").innerHTML=P.map(x=>`<tr><td><img src="${x.img}" alt=""></td><td><b>${x.n}</b><br><small style="color:#888">${x.d}</small></td><td>${x.on}</td><td>${x.inb}</td><td>${status(x)}</td><td>${x.alt}</td></tr>`).join("");
+
+/* nav */
+const go=p=>{document.querySelectorAll(".panel").forEach(s=>s.classList.toggle("on",s.id==="p-"+p));document.querySelectorAll("#nav button").forEach(b=>b.classList.toggle("on",b.dataset.p===p));window.scrollTo(0,0);};
+document.getElementById("nav").addEventListener("click",e=>{const b=e.target.closest("button");if(b)go(b.dataset.p);});
+document.addEventListener("click",e=>{const a=e.target.closest("[data-go]");if(a){e.preventDefault();go(a.dataset.go);}});
+
+/* site calculator */
+const SITES={
+ mt:{c:"Tauranga City Council",w:"High",cz:"D",cz2:"Within 500 m of breaking surf",fl:"None mapped",note:"Coastal site: use marine-grade fixings and check the inverter's corrosion rating for zone D."},
+ cam:{c:"Waipā District Council",w:"Medium",cz:"B",cz2:"Inland",fl:"Check overlay: near flood-prone area",note:"Mount the inverter and battery above the flood level shown on the council overlay."},
+ wgn:{c:"Wellington City Council",w:"Very High",cz:"C",cz2:"Coastal, sheltered",fl:"None mapped",note:"Very high wind zone: confirm racking spans and clamp spacing against the manufacturer's wind tables."}
+};
+document.getElementById("run").addEventListener("click",()=>{
+  const s=SITES[document.getElementById("addr").value],ph=document.getElementById("phase").value,bill=+document.getElementById("bill").value;
+  const inv=bill>=600?P[2]:bill>=400?P[1]:P[0];
+  let html=`<div class="card"><div class="k">Site profile <span class="pill low" style="font-weight:600">Sample</span></div>
+  <div class="zone"><div><span>Council</span><b>${s.c}</b></div><div><span>Wind zone (NZS 3604)</span><b>${s.w}</b></div><div><span>Corrosion zone</span><b>${s.cz}</b><span>${s.cz2}</span></div><div><span>Flood overlay</span><b style="font-size:15px">${s.fl}</b></div></div>
+  <div class="alert info"><span>ℹ</span><div>${s.note}</div></div>`;
+  if(ph==="1"){html+=`<div class="alert warn"><span>⚠</span><div><b>Single-phase supply</b>The SH15/20/25T are three-phase hybrid inverters. Check the supply or pick a single-phase option from the range.</div></div>`;}
+  html+=`<div class="k" style="margin-top:12px">Suggested system</div><table style="margin-top:8px"><tbody>
+   <tr><td><img src="${inv.img}" alt=""></td><td><b>${inv.n}</b><br><small style="color:#888">Sized for a bill of about $${bill}/month</small></td><td>${status(inv)}</td><td>${inv.on===0?"Suggest: "+inv.alt:inv.on<10?"Only "+inv.on+" left":""}</td></tr>
+   <tr><td><img src="${P[3].img}" alt=""></td><td><b>${P[3].n}</b></td><td>${status(P[3])}</td><td></td></tr>
+   <tr><td><img src="${P[5].img}" alt=""></td><td><b>${P[5].n}</b><br><small style="color:#888">Spacing set for ${s.w.toLowerCase()} wind zone</small></td><td>${status(P[5])}</td><td></td></tr>
+  </tbody></table><div class="row" style="margin-top:12px"><button class="btn" data-go="quote">Build quote from this</button><button class="btn ghost" data-go="train">Related training</button></div></div>`;
+  const r=document.getElementById("res");r.innerHTML=html;r.classList.add("on");
+});
+
+/* quote */
+let Q=[{p:2,q:1},{p:3,q:1},{p:4,q:1},{p:5,q:1}];
+function drawQ(){
+  document.getElementById("qRows").innerHTML=Q.map((l,i)=>{const x=P[l.p];return `<tr><td><img src="${x.img}" alt=""></td><td><b>${x.n}</b><br><small style="color:#888">${x.d}</small></td><td>${l.q}</td><td>${status(x)}</td><td>${x.on===0?`<button class="btn" data-swap="${i}">Swap to SH20T</button>`:""}</td></tr>`;}).join("");
+  const bad=Q.some(l=>P[l.p].on===0),low=Q.find(l=>P[l.p].on>0&&P[l.p].on<10);
+  document.getElementById("qAlert").innerHTML=bad?`<div class="alert warn"><span>⚠</span><div><b>One line is back-ordered</b>The SH25T has no stock until 26 Nov. Swap to the SH20T (6 in stock) to keep the install date, or send with a later date.</div></div>`
+   :low?`<div class="alert ok"><span>✓</span><div><b>All lines available</b>Heads up: only ${P[low.p].on} ${P[low.p].n.split(" ")[1]} left. Confirming the order today reserves one.</div></div>`:`<div class="alert ok"><span>✓</span><div><b>All lines in stock</b></div></div>`;
+}
+document.getElementById("qRows").addEventListener("click",e=>{const b=e.target.closest("[data-swap]");if(!b)return;Q[+b.dataset.swap].p=1;drawQ();});
+document.getElementById("send").addEventListener("click",()=>{const bad=Q.some(l=>P[l.p].on===0);document.getElementById("qSent").innerHTML=bad?`<div class="alert warn"><span>⚠</span><div><b>Check the back-ordered line first</b>Swap it or confirm the later date with the homeowner.</div></div>`:`<div class="alert ok"><span>✓</span><div><b>Quote sent (demo)</b>Smith's sees it on the leadership dashboard as quoted demand.</div></div>`;});
+drawQ();
+const qp=new URLSearchParams(location.search).get("tab");if(qp)go(qp);
+</script>
+<script>
+(function(){
+  var b=document.getElementById("eko-back"),q=new URLSearchParams(location.search),from=q.get("from");
+  var embedded=false;try{embedded=window.self!==window.top;}catch(e){embedded=true;}
+  if(embedded){b.style.display="none";return;}
+  b.href="index.html"+(from?"#"+from:"");
+})();
+</script>
+</body>
+</html>

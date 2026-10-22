@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en-NZ">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smith's NZ · One system for the solar network · Eko Media</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+:root{--y:#FFDD00;--k:#0b0b0b;--k2:#161616;--k3:#232323;--ink:#141414;--mute:#666;--paper:#f6f6f2;--line:#e3e3dd;--ok:#1f9d55;--warn:#e8590c;--bad:#d6336c}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-snap-type:y proximity}
+body{margin:0;font:16px/1.5 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--paper)}
+a{color:inherit}
+.bar{position:fixed;top:0;left:0;right:0;z-index:30;background:#262626;color:#bbb;display:flex;align-items:center;gap:14px;padding:8px 16px;font:11px/1 ui-monospace,Menlo,monospace;letter-spacing:.08em;text-transform:uppercase}
+.bar img{height:26px;width:auto;display:block}
+.bar .demos{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;text-transform:none;letter-spacing:0;font:600 13px system-ui,sans-serif}
+.bar .demos a{background:var(--k3);color:#fff;text-decoration:none;padding:7px 12px;border-radius:999px;border:1px solid #333}
+.bar .demos a:hover{border-color:var(--y);color:var(--y)}
+.dots{position:fixed;right:14px;top:50%;transform:translateY(-50%);z-index:30;display:flex;flex-direction:column;gap:8px}
+.dots a{width:9px;height:9px;border-radius:50%;background:#c4c4bc;display:block}
+.dots a.on{background:var(--y);transform:scale(1.35);box-shadow:0 0 0 2px var(--k)}
+.slide{min-height:100vh;scroll-snap-align:start;padding:84px 0 52px;display:flex;flex-direction:column;justify-content:center;position:relative}
+.dark{background:var(--k);color:#eee}
+.dark .lede,.dark .muted{color:#aaa}
+.yellow{background:var(--y);color:var(--k)}
+.wrap{width:100%;max-width:1180px;margin:0 auto;padding:0 32px}
+.kick{font:12px ui-monospace,Menlo,monospace;letter-spacing:.14em;text-transform:uppercase;color:#777;margin:0 0 10px}
+.dark .kick{color:var(--y)}
+h1,h2{font-weight:800;letter-spacing:-.02em;line-height:1.05;margin:0 0 14px}
+h1{font-size:clamp(36px,5.6vw,68px)}
+h2{font-size:clamp(28px,3.8vw,46px);max-width:24ch}
+h1 mark,h2 mark{background:linear-gradient(transparent 58%,var(--y) 58%);color:inherit;padding:0 .08em}
+.dark h1 mark,.dark h2 mark{background:none;color:var(--y)}
+.lede{font-size:18px;color:var(--mute);max-width:62ch;margin:0 0 26px}
+.muted{color:var(--mute)}
+.src{font-size:12px;color:#888;margin-top:22px;max-width:120ch}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px}
+.dark .card{background:var(--k2);border-color:#2b2b2b}
+.card .k{font:11px ui-monospace,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase;color:#888}
+.card .big{font-size:34px;font-weight:800;line-height:1.05;margin:8px 0 4px}
+.card h3{font-size:17px;margin:0 0 6px}
+.card p{margin:0;font-size:14.5px;color:var(--mute)}
+.dark .card p{color:#aaa}
+.card.y{border-top:4px solid var(--y)}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--y);color:var(--k);font-weight:700;text-decoration:none;border-radius:999px;padding:12px 20px;font-size:15px;border:2px solid var(--y)}
+.btn::after{content:"→"}
+.btn.ghost{background:transparent;color:inherit;border-color:currentColor}
+.btn.ghost:hover{background:var(--y);color:var(--k);border-color:var(--y)}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.tagline{display:inline-block;background:var(--y);color:var(--k);font-weight:700;padding:4px 10px;border-radius:6px;font-size:13px;margin-bottom:16px}
+/* cover */
+.cover{background:linear-gradient(90deg,rgba(11,11,11,.96) 0%,rgba(11,11,11,.85) 46%,rgba(11,11,11,.25) 100%),url(img/solar-rows.jpg) center/cover;color:#fff}
+.cover .logo{width:220px;height:auto;display:block;margin-bottom:34px}
+.cover p.for{font:12px ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;color:#bbb;margin-top:30px}
+/* today */
+.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:6px}
+.facts .big{font-size:28px}
+.brands{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.brands span{background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:14px;font-weight:600}
+.brands span.hl{background:var(--y);border-color:var(--y)}
+.split{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}
+.split img{width:100%;border-radius:16px;display:block}
+/* gap */
+.gaps{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.gaps li{display:flex;gap:14px;align-items:flex-start;background:var(--k2);border:1px solid #2b2b2b;border-radius:12px;padding:14px 16px}
+.gaps li b{display:block;color:#fff;font-size:16px}
+.gaps li span{color:#aaa;font-size:14.5px}
+.gaps .x{flex:none;width:28px;height:28px;border-radius:50%;border:2px solid #555;color:#888;display:grid;place-items:center;font-weight:800}
+.quote{border-left:4px solid var(--y);padding:6px 0 6px 18px;font-size:20px;line-height:1.45;color:#ddd;margin:0}
+/* diagrams */
+.diagram{width:100%;height:auto;display:block}
+.legs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+.legs .card h3{display:flex;gap:8px;align-items:center}
+.legs .num{width:26px;height:26px;border-radius:50%;background:var(--y);color:var(--k);display:inline-grid;place-items:center;font-weight:800;font-size:14px}
+.legs ul{margin:8px 0 0;padding-left:18px;font-size:14px;color:var(--mute)}
+.legs li{margin:3px 0}
+/* features */
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.feat .card{position:relative;padding-top:22px}
+.feat .ic{width:40px;height:40px;border-radius:10px;background:var(--k);color:var(--y);display:grid;place-items:center;font-weight:800;margin-bottom:12px;font-size:18px}
+/* own */
+.own{display:grid;grid-template-columns:1fr 60px 1fr;gap:12px;align-items:center}
+.own .arrow{font-size:34px;text-align:center;color:var(--k)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chips span{background:var(--k);color:var(--y);border-radius:6px;padding:4px 9px;font-size:13px;font-weight:600}
+/* phases */
+.phases{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:10px;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#fff}
+.phases div{padding:18px 16px;border-right:1px solid var(--line)}
+.phases div:last-child{border-right:0}
+.phases .m{font:12px ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase;color:#777}
+.phases h3{margin:6px 0 8px;font-size:16px}
+.phases ul{margin:0;padding-left:16px;font-size:13.5px;color:var(--mute)}
+.phases .bar2{height:6px;background:var(--y);margin:-18px -16px 14px}
+/* film */
+.films{display:grid;grid-template-columns:auto auto;justify-content:start;gap:16px;align-items:start}
+.films a img{max-height:52vh;width:auto;max-width:100%}
+.films a{display:block;position:relative;border-radius:14px;overflow:hidden;background:#000;text-decoration:none;color:#fff}
+.films a img{width:100%;display:block;opacity:.75}
+.films a span{position:absolute;left:16px;bottom:14px;font-weight:700;background:var(--y);color:var(--k);padding:6px 12px;border-radius:999px}
+.films a span::before{content:"▶ "}
+.next{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;counter-reset:n}
+.next .card h3::before{counter-increment:n;content:counter(n) ". ";color:#b59a00}
+.sample{display:inline-block;font:11px ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;background:#fff3bf;color:#7a5d00;border:1px solid #f0d36b;border-radius:4px;padding:2px 6px;vertical-align:middle}
+@media (max-width:900px){
+  .grid2,.grid3,.grid4,.facts,.split,.legs,.feat,.films,.next{grid-template-columns:1fr}
+  .phases{grid-template-columns:1fr}.phases div{border-right:0;border-bottom:1px solid var(--line)}
+  .own{grid-template-columns:1fr}.own .arrow{transform:rotate(90deg)}
+  .bar .t{display:none}.dots{display:none}
+  .slide{min-height:auto;padding:90px 0 50px}
+  .wrap{padding:0 16px}
+}
+@media print{.bar,.dots{display:none}.slide{min-height:auto;page-break-after:always}}
+</style>
+</head>
+<body>
+<div class="bar">
+  <img src="img/smiths-logo.png" alt="Smiths" width="51" height="26">
+  <span class="t">Systems &amp; integrations proposal · Prepared by Eko Media · Confidential</span>
+  <nav class="demos">
+    <a href="portal.html?from=s5">Installer portal</a>
+    <a href="map.html?from=s6">Network map</a>
+    <a href="dashboard.html?from=s8">Leadership dashboard</a>
+    <a href="#s10">Film</a>
+  </nav>
+</div>
+<nav class="dots" id="dots"></nav>
+
+<!-- 0 cover -->
+<section class="slide cover" id="s0">
+  <div class="wrap">
+    <img class="logo" src="img/smiths-logo.png" alt="Smiths" width="220" height="112">
+    <h1>One system for the<br><mark>whole solar network.</mark></h1>
+    <p class="lede" style="color:#ccc;max-width:52ch">How Smith's NZ can connect its stock, training and approved installers into one platform, built on the systems it already runs.</p>
+    <div class="btns">
+      <a class="btn" href="#s1">Start</a>
+      <a class="btn ghost" href="#s10" style="color:#fff">Watch the film</a>
+    </div>
+    <p class="for">For Martin, the CFO and the Director · Solar division · October 2026</p>
+  </div>
+</section>
+
+<!-- 1 today -->
+<section class="slide" id="s1">
+  <div class="wrap split">
+    <div>
+      <p class="kick">01 · Smith's today</p>
+      <h2>A <mark>31-year</mark> NZ distributor with the range installers want</h2>
+      <p class="lede">Smith's is a 100% New Zealand-owned importer and distributor of electrical and technical products. It supplies wholesalers, installers, service technicians and manufacturers from its Hamilton head office and warehouse.</p>
+      <div class="facts">
+        <div class="card y"><div class="k">In business</div><div class="big">1995</div><p>Started by Alex and Cecile Smith in an Auckland garage</p></div>
+        <div class="card y"><div class="k">Base</div><div class="big">Hamilton</div><p>Head office and warehouse</p></div>
+        <div class="card y"><div class="k">Delivery</div><div class="big">Overnight</div><p>Nationwide</p></div>
+        <div class="card y"><div class="k">Divisions</div><div class="big">6</div><p>Solar is one of them</p></div>
+      </div>
+      <div class="brands" aria-label="Solar brands on smithsnz.co.nz">
+        <span class="hl">Sungrow inverters &amp; batteries</span><span>Trina Solar panels</span><span>Clenergy racking</span><span>Huawei</span><span>iStore</span><span>Allume Energy</span>
+      </div>
+      <p class="src">Sources: smithsnz.co.nz home and About pages; ENF Solar company listing (updated 20 Apr 2026). Read 22 Oct 2026.</p>
+    </div>
+    <img src="img/home-system.jpg" alt="Sungrow hybrid inverter, battery and charger on a garage wall" width="512" height="640" style="max-height:72vh;object-fit:cover">
+  </div>
+</section>
+
+<!-- 2 gap -->
+<section class="slide dark" id="s2">
+  <div class="wrap grid2" style="gap:40px;align-items:center">
+    <div>
+      <p class="kick">02 · The gap</p>
+      <h2>The stock, the training and the installers are there. <mark>Nothing joins them up.</mark></h2>
+      <p class="lede">We reviewed smithsnz.co.nz as an installer would. It's a good online store with a customer login. What we couldn't find were the tools an installer needs between "I've got a job" and "I've placed the order".</p>
+      <p class="quote">Every one of these questions is a sales signal. Today, Smith's only sees it when the order lands, or when someone picks up the phone.</p>
+    </div>
+    <ul class="gaps">
+      <li><span class="x">✕</span><div><b>Live stock and lead times</b><span>Is it on the shelf in Hamilton? If not, when does it land?</span></div></li>
+      <li><span class="x">✕</span><div><b>System sizing for an address</b><span>Wind zone, coastal exposure and council rules, worked out for that site</span></div></li>
+      <li><span class="x">✕</span><div><b>A quote tool that knows the stock</b><span>So installers never promise a battery that's back-ordered</span></div></li>
+      <li><span class="x">✕</span><div><b>Training on demand</b><span>"How do I install this racking?" answered with a click</span></div></li>
+      <li><span class="x">✕</span><div><b>A homeowner front door</b><span>Price a system, then get sent to the nearest approved installer</span></div></li>
+      <li><span class="x">✕</span><div><b>Demand data for leadership</b><span>What installers are asking for, by region, before it becomes an order</span></div></li>
+    </ul>
+  </div>
+  <div class="wrap"><p class="src" style="color:#888">Based on Eko Media's review of smithsnz.co.nz, 22 Oct 2026. Smith's may run some of these internally. If so, the platform plugs into them rather than replacing them.</p></div>
+</section>
+
+<!-- 3 hub -->
+<section class="slide" id="s3">
+  <div class="wrap">
+    <p class="kick">03 · The model</p>
+    <h2>One central brain, <mark>three legs</mark></h2>
+    <p class="lede">Each leg gets the tools it needs, and they all draw on the same live data, so a stock change in Hamilton shows up in every installer's quote straight away.</p>
+    <svg class="diagram" viewBox="0 0 1100 300" role="img" aria-label="Diagram: a central brain connected to Marketing, Smith's operations and Approved installers">
+      <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#0b0b0b"/></marker></defs>
+      <g stroke="#0b0b0b" stroke-width="2.5" fill="none" marker-end="url(#ah)" marker-start="url(#ah)">
+        <path d="M455 150 L250 150"/><path d="M645 150 L850 150"/><path d="M550 205 L550 262" marker-start="none"/>
+      </g>
+      <circle cx="550" cy="150" r="95" fill="#FFDD00" stroke="#0b0b0b" stroke-width="3"/>
+      <text x="550" y="140" text-anchor="middle" font-size="26" font-weight="800" font-family="system-ui">Central brain</text>
+      <text x="550" y="168" text-anchor="middle" font-size="14" font-family="system-ui">stock · products · rules</text>
+      <text x="550" y="186" text-anchor="middle" font-size="14" font-family="system-ui">training · queries · reports</text>
+      <rect x="20" y="95" width="230" height="110" rx="14" fill="#0b0b0b"/>
+      <text x="135" y="140" text-anchor="middle" fill="#FFDD00" font-size="13" font-family="ui-monospace,monospace" letter-spacing="2">LEG 1</text>
+      <text x="135" y="168" text-anchor="middle" fill="#fff" font-size="21" font-weight="800" font-family="system-ui">Marketing</text>
+      <rect x="850" y="95" width="230" height="110" rx="14" fill="#0b0b0b"/>
+      <text x="965" y="140" text-anchor="middle" fill="#FFDD00" font-size="13" font-family="ui-monospace,monospace" letter-spacing="2">LEG 3</text>
+      <text x="965" y="168" text-anchor="middle" fill="#fff" font-size="21" font-weight="800" font-family="system-ui">Approved installers</text>
+      <rect x="435" y="262" width="230" height="36" rx="10" fill="#fff" stroke="#0b0b0b" stroke-width="2"/>
+      <text x="550" y="286" text-anchor="middle" font-size="15" font-weight="700" font-family="system-ui">Your existing systems plug in</text>
+      <text x="550" y="40" text-anchor="middle" font-size="13" font-family="ui-monospace,monospace" letter-spacing="2" fill="#777">LEG 2 · SMITH'S OPERATIONS SITS INSIDE THE BRAIN</text>
+    </svg>
+    <div class="legs">
+      <div class="card"><h3><span class="num">1</span>Marketing</h3><p>The homeowner front door for the brands Smith's carries, starting with Sungrow.</p><ul><li>Homeowner cost calculator</li><li>Find-an-installer map</li><li>Local content that gets found in Google and AI answers</li></ul></div>
+      <div class="card"><h3><span class="num">2</span>Smith's operations</h3><p>The single source of truth: stock, product rules and training.</p><ul><li>Live stock and lead times</li><li>Compliance and sizing rules</li><li>Training library and demand reports</li></ul></div>
+      <div class="card"><h3><span class="num">3</span>Approved installers</h3><p>One login that does the job from site visit to order.</p><ul><li>Address-based system sizing</li><li>Quotes that check stock</li><li>Their own local microsite, owned by Smith's</li></ul></div>
+    </div>
+    <p class="src">Structure as discussed with Martin, 22 Oct 2026.</p>
+  </div>
+</section>
+
+<!-- 4 integrations -->
+<section class="slide dark" id="s4">
+  <div class="wrap">
+    <p class="kick">04 · Integrations</p>
+    <h2>Built on what Smith's <mark>already runs</mark></h2>
+    <p class="lede">No rip-and-replace. Each system Smith's uses today connects into the brain, and the brain feeds every tool. Where a system has an API we connect it directly. Where it doesn't, we use scheduled exports or AI plug-ins.</p>
+    <svg class="diagram" viewBox="0 0 1100 340" role="img" aria-label="Diagram: existing systems flow into an integration layer and the central brain, which feeds the portal, calculator, map, dashboard and alerts">
+      <defs><marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#FFDD00"/></marker></defs>
+      <text x="120" y="22" text-anchor="middle" fill="#888" font-size="12" font-family="ui-monospace,monospace" letter-spacing="2">EXISTING</text>
+      <text x="550" y="22" text-anchor="middle" fill="#888" font-size="12" font-family="ui-monospace,monospace" letter-spacing="2">CONNECT</text>
+      <text x="960" y="22" text-anchor="middle" fill="#888" font-size="12" font-family="ui-monospace,monospace" letter-spacing="2">NEW TOOLS</text>
+      <g font-family="system-ui" font-size="15" font-weight="600">
+        <g fill="#1d1d1d" stroke="#3a3a3a"><rect x="20" y="40" width="200" height="46" rx="10"/><rect x="20" y="98" width="200" height="46" rx="10"/><rect x="20" y="156" width="200" height="46" rx="10"/><rect x="20" y="214" width="200" height="46" rx="10"/><rect x="20" y="272" width="200" height="46" rx="10"/></g>
+        <g fill="#eee" text-anchor="middle"><text x="120" y="68">Online store</text><text x="120" y="126">Accounting / ERP</text><text x="120" y="184">Warehouse stock</text><text x="120" y="242">CRM and email</text><text x="120" y="300">Supplier price lists</text></g>
+      </g>
+      <g stroke="#FFDD00" stroke-width="2" fill="none" marker-end="url(#a2)" opacity=".9">
+        <path d="M222 63 C320 63 340 170 420 170"/><path d="M222 121 C320 121 340 170 420 170"/><path d="M222 179 L420 179"/><path d="M222 237 C320 237 340 188 420 188"/><path d="M222 295 C320 295 340 188 420 188"/>
+        <path d="M682 179 C760 179 780 63 858 63"/><path d="M682 179 C760 179 780 121 858 121"/><path d="M682 179 L858 179"/><path d="M682 179 C760 179 780 237 858 237"/><path d="M682 179 C760 179 780 295 858 295"/>
+      </g>
+      <rect x="425" y="110" width="255" height="140" rx="18" fill="#FFDD00"/>
+      <text x="552" y="160" text-anchor="middle" font-family="system-ui" font-size="24" font-weight="800" fill="#0b0b0b">Central brain</text>
+      <text x="552" y="186" text-anchor="middle" font-family="system-ui" font-size="14" fill="#0b0b0b">one database · one knowledge base</text>
+      <text x="552" y="206" text-anchor="middle" font-family="system-ui" font-size="14" fill="#0b0b0b">AI agents draft, people approve</text>
+      <g font-family="system-ui" font-size="15" font-weight="700">
+        <g fill="#FFDD00"><rect x="862" y="40" width="218" height="46" rx="10"/><rect x="862" y="98" width="218" height="46" rx="10"/><rect x="862" y="156" width="218" height="46" rx="10"/><rect x="862" y="214" width="218" height="46" rx="10"/><rect x="862" y="272" width="218" height="46" rx="10"/></g>
+        <g fill="#0b0b0b" text-anchor="middle"><text x="971" y="68">Installer portal</text><text x="971" y="126">Homeowner calculator</text><text x="971" y="184">Network map</text><text x="971" y="242">Leadership dashboard</text><text x="971" y="300">Alerts and reports</text></g>
+      </g>
+    </svg>
+    <div class="grid3" style="margin-top:18px">
+      <div class="card"><h3 style="color:#fff">Keep what works</h3><p>The store, the accounts and the warehouse stay as they are. The platform reads from them and writes back only where Smith's approves it.</p></div>
+      <div class="card"><h3 style="color:#fff">One source of truth</h3><p>Stock, product rules and training live in one place, so the portal, the calculator and the dashboard never disagree.</p></div>
+      <div class="card"><h3 style="color:#fff">AI with a human in the loop</h3><p>One main agent is allowed to make changes. Other agents can read and suggest, and every change needs a person's approval.</p></div>
+    </div>
+    <p class="src" style="color:#888">These systems are examples until Smith's confirms what it runs.</p>
+  </div>
+</section>
+
+<!-- 5 portal -->
+<section class="slide" id="s5">
+  <div class="wrap">
+    <p class="kick">05 · Leg 3 · Installer portal</p>
+    <h2>From site visit to order <mark>in one login</mark></h2>
+    <p class="lede">Every approved installer gets a portal that knows Smith's stock and the rules for each address. It's quicker for the installer and gives Smith's a clear view of the pipeline.</p>
+    <div class="feat">
+      <div class="card"><div class="ic">⌂</div><h3>Address calculator</h3><p>Enter a site address. It looks up the wind zone, coastal exposure, flood overlays and council notes, and shows only products that comply.</p></div>
+      <div class="card"><div class="ic">▦</div><h3>Live stock and lead times</h3><p>Shows what's on the shelf in Hamilton, what's inbound and when, and the nearest alternative if something is out.</p></div>
+      <div class="card"><div class="ic">$</div><h3>Quotes that check stock</h3><p>Flags low or back-ordered stock before the installer promises a date, and recommends available products.</p></div>
+      <div class="card"><div class="ic">▶</div><h3>Training on the job</h3><p>"How do I install this racking system?" opens the right video and the install manual, right inside the quote.</p></div>
+      <div class="card"><div class="ic">!</div><h3>Notifications</h3><p>Stock arrivals, price changes, recalls and new products, pushed to the installers they affect.</p></div>
+      <div class="card"><div class="ic">↗</div><h3>Demand signals</h3><p>Every lookup and quote is logged, so Smith's sees demand by product and region before the orders come in.</p></div>
+    </div>
+    <div class="btns"><a class="btn" href="portal.html?from=s5">Open the installer portal demo</a></div>
+    <p class="src">Demo uses sample installers, stock levels and site data. Products shown are from Smith's solar range: Sungrow SH15/20/25T, SBH150–400 and AC22E-01, and Clenergy RUNNUR racking.</p>
+  </div>
+</section>
+
+<!-- 6 front door + map -->
+<section class="slide dark" id="s6">
+  <div class="wrap grid2" style="gap:40px;align-items:center">
+    <div>
+      <p class="kick">06 · Leg 1 · Homeowner front door</p>
+      <h2>Homeowners price it, <mark>Smith's installers win it</mark></h2>
+      <p class="lede">A public calculator takes an address and a power bill. It estimates the right system size, then sends the homeowner to the nearest approved installer as a ready-made lead.</p>
+      <p class="lede">The same map works the other way for Smith's. It shows where the network is thin and where to recruit next.</p>
+      <div class="btns"><a class="btn" href="map.html?from=s6">Open the network map</a><a class="btn ghost" href="map.html?from=s6&amp;view=home" style="color:#fff">Homeowner view</a></div>
+    </div>
+    <div class="card" style="padding:22px">
+      <div class="k" style="color:var(--y)">Lead flow <span class="sample">Sample</span></div>
+      <ol style="margin:12px 0 0;padding-left:20px;color:#ddd;line-height:1.9">
+        <li>Homeowner enters address and monthly power bill</li>
+        <li>Calculator suggests system size, battery and rough savings range</li>
+        <li>Nearest approved installers shown on the map</li>
+        <li>Lead lands in that installer's portal, and Smith's sees it on the dashboard</li>
+        <li>Installer quotes with live stock, then orders from Smith's</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- 7 own -->
+<section class="slide yellow" id="s7">
+  <div class="wrap">
+    <p class="kick" style="color:#5c5000">07 · The asset</p>
+    <h2>Smith's owns the network's <mark style="background:#0b0b0b;color:#FFDD00">digital footprint</mark></h2>
+    <p class="lede" style="color:#3d3600">Each approved installer gets a local microsite with its own content and Google Business Profile, all linking back to the main site. The installer runs the jobs, and Smith's owns the sites.</p>
+    <div class="own">
+      <div class="card"><h3>If an installer leaves</h3><p>The microsite, its search ranking, its reviews and its leads stay with Smith's and are handed to the next approved installer in that area.</p><div class="chips"><span>Microsite</span><span>Search ranking</span><span>Reviews</span><span>Lead history</span></div></div>
+      <div class="arrow">→</div>
+      <div class="card"><h3>What that means for the business</h3><p>Every month of content builds a lasting asset on Smith's side of the ledger, rather than on the installer's.</p><div class="chips"><span>Owned asset</span><span>Transferable</span><span>Compounds monthly</span></div></div>
+    </div>
+    <p class="src" style="color:#5c5000">Ownership model as discussed with Martin, 22 Oct 2026. Terms would sit in the approved-installer agreement.</p>
+  </div>
+</section>
+
+<!-- 8 dashboard -->
+<section class="slide" id="s8">
+  <div class="wrap split">
+    <div>
+      <p class="kick">08 · What leadership sees</p>
+      <h2>Demand you can see <mark>before it's an order</mark></h2>
+      <p class="lede">The dashboard turns installer lookups, quotes and homeowner leads into a weekly picture for the CFO and the Director.</p>
+      <ul class="gaps" style="background:none">
+        <li style="background:#fff;border-color:var(--line)"><span class="x" style="border-color:var(--y);color:var(--k);background:var(--y)">1</span><div><b style="color:var(--ink)">Demand by region and product</b><span class="muted">What installers are looking up and quoting, week by week</span></div></li>
+        <li style="background:#fff;border-color:var(--line)"><span class="x" style="border-color:var(--y);color:var(--k);background:var(--y)">2</span><div><b style="color:var(--ink)">Stock cover and reorder flags</b><span class="muted">Quoted demand against stock on hand and inbound</span></div></li>
+        <li style="background:#fff;border-color:var(--line)"><span class="x" style="border-color:var(--y);color:var(--k);background:var(--y)">3</span><div><b style="color:var(--ink)">Pipeline and conversion</b><span class="muted">Leads to quotes to orders, by installer</span></div></li>
+        <li style="background:#fff;border-color:var(--line)"><span class="x" style="border-color:var(--y);color:var(--k);background:var(--y)">4</span><div><b style="color:var(--ink)">Network coverage</b><span class="muted">Regions with demand but no nearby installer</span></div></li>
+      </ul>
+      <div class="btns"><a class="btn" href="dashboard.html?from=s8">Open the leadership dashboard</a></div>
+    </div>
+    <a href="dashboard.html?from=s8" style="display:block;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#0b0b0b;color:#fff;text-decoration:none;padding:22px">
+      <div style="font:11px ui-monospace,monospace;letter-spacing:.12em;color:#FFDD00">WEEKLY SNAPSHOT <span class="sample">Sample</span></div>
+      <div class="grid2" style="margin-top:14px;gap:10px">
+        <div style="background:#1a1a1a;border-radius:10px;padding:12px"><div style="font-size:12px;color:#999">Installer lookups</div><div style="font-size:30px;font-weight:800">1,284</div></div>
+        <div style="background:#1a1a1a;border-radius:10px;padding:12px"><div style="font-size:12px;color:#999">Quotes created</div><div style="font-size:30px;font-weight:800">212</div></div>
+        <div style="background:#1a1a1a;border-radius:10px;padding:12px"><div style="font-size:12px;color:#999">SKUs below cover</div><div style="font-size:30px;font-weight:800;color:#ff8a3d">3</div></div>
+        <div style="background:#1a1a1a;border-radius:10px;padding:12px"><div style="font-size:12px;color:#999">Coverage gaps</div><div style="font-size:30px;font-weight:800;color:#FFDD00">5</div></div>
+      </div>
+      <div style="font-size:12px;color:#888;margin-top:12px">Click to open the dashboard demo</div>
+    </a>
+  </div>
+</section>
+
+<!-- 9 phases -->
+<section class="slide" id="s9">
+  <div class="wrap">
+    <p class="kick">09 · How we'd build it</p>
+    <h2>One silo at a time, <mark>with a milestone every month</mark></h2>
+    <p class="lede">We'd build it in stages, so Smith's sees something working each month and can re-prioritise as it goes. The order below is a starting point to agree.</p>
+    <div class="phases">
+      <div><div class="bar2"></div><div class="m">Month 1</div><h3>Foundation</h3><ul><li>Map Smith's current systems</li><li>Connect store and stock</li><li>Set up the central brain</li></ul></div>
+      <div><div class="bar2" style="opacity:.85"></div><div class="m">Month 2</div><h3>Installer portal v1</h3><ul><li>Live stock and lead times</li><li>Quote builder with stock checks</li><li>Pilot with a few installers</li></ul></div>
+      <div><div class="bar2" style="opacity:.7"></div><div class="m">Month 3</div><h3>Site intelligence</h3><ul><li>Address calculator</li><li>Compliance rules</li><li>Training library in the portal</li></ul></div>
+      <div><div class="bar2" style="opacity:.55"></div><div class="m">Month 4</div><h3>Front door</h3><ul><li>Homeowner calculator</li><li>Network map</li><li>First installer microsites</li></ul></div>
+      <div><div class="bar2" style="opacity:.4"></div><div class="m">Month 5 on</div><h3>Scale and report</h3><ul><li>Leadership dashboard</li><li>Weekly demand reports</li><li>National installer rollout</li></ul></div>
+    </div>
+    <p class="src">Indicative phasing. Scope and order are set together at the start and reviewed each month.</p>
+  </div>
+</section>
+
+<!-- 10 film + next -->
+<section class="slide dark" id="s10">
+  <div class="wrap">
+    <p class="kick">10 · The film and next steps</p>
+    <h2>See it in <mark>60 seconds</mark></h2>
+    <div class="films">
+      <a href="video/smiths-promo-169.mp4" target="_blank" rel="noopener"><img src="img/solar-rows.jpg" alt="" width="1100" height="560" style="aspect-ratio:16/9;object-fit:cover"><span>Play film (16:9)</span></a>
+      <a href="video/smiths-promo-916.mp4" target="_blank" rel="noopener" style="max-width:260px"><img src="img/home-system.jpg" alt="" width="512" height="640" style="aspect-ratio:9/16;object-fit:cover"><span>Mobile (9:16)</span></a>
+    </div>
+    <div class="next" style="margin-top:26px">
+      <div class="card"><h3 style="color:#fff">Confirm the systems</h3><p>A short list of what Smith's runs today: accounting, stock, CRM and supplier feeds.</p></div>
+      <div class="card"><h3 style="color:#fff">Pick the first silo</h3><p>Usually the installer portal with live stock, because it pays back fastest for installers.</p></div>
+      <div class="card"><h3 style="color:#fff">Choose pilot installers</h3><p>Three to five approved installers to test it on live jobs.</p></div>
+    </div>
+    <p class="src" style="color:#888">Prepared by Eko Media for Smith's NZ. All dashboard, portal and map figures in the demos are samples for illustration.</p>
+  </div>
+</section>
+
+<script>
+(function(){
+  var s=[].slice.call(document.querySelectorAll(".slide")),d=document.getElementById("dots");
+  s.forEach(function(x){var a=document.createElement("a");a.href="#"+x.id;a.setAttribute("aria-label","Go to section "+x.id.slice(1));d.appendChild(a);});
+  var dots=[].slice.call(d.children);
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var i=s.indexOf(e.target);dots.forEach(function(x,j){x.classList.toggle("on",i===j);});}});},{threshold:.5});
+  s.forEach(function(x){io.observe(x);});
+  document.addEventListener("keydown",function(e){
+    if(["ArrowDown","PageDown","ArrowRight"," "].indexOf(e.key)<0&&["ArrowUp","PageUp","ArrowLeft"].indexOf(e.key)<0)return;
+    var y=window.scrollY+10,i=s.findIndex(function(x){return x.offsetTop>y;});
+    var cur=i<0?s.length-1:Math.max(0,i-1);
+    var nxt=["ArrowUp","PageUp","ArrowLeft"].indexOf(e.key)>=0?Math.max(0,cur-(window.scrollY>s[cur].offsetTop+5?0:1)):Math.min(s.length-1,cur+1);
+    e.preventDefault();s[nxt].scrollIntoView({behavior:"smooth"});
+  });
+})();
+</script>
+</body>
+</html>
